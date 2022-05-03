@@ -1,7 +1,13 @@
 import {createElement} from '../render.js';
+import {humanizeTaskDateTo, humanizeTaskDateFrom, isTaskExpired} from '../utils.js';
 
-const createPointEditTemplate = () => (
-  `<li class="trip-events__item">
+const createPointEditTemplate = (point) => {
+  const {basePrice, type, dateFrom, dateTo, destination, } = point;
+
+  const datePointFrom = dateFrom !== null ? humanizeTaskDateFrom(dateFrom) : '';
+  const datePointTo = dateTo !== null ? humanizeTaskDateTo(dateTo) : '';
+
+  return (`<li class="trip-events__item">
     <form class="event event--edit" action="#" method="post">
       <header class="event__header">
         <div class="event__type-wrapper">
@@ -104,7 +110,7 @@ const createPointEditTemplate = () => (
               <label class="event__offer-label" for="event-offer-luggage-1">
                 <span class="event__offer-title">Add luggage</span>
                 &plus;&euro;&nbsp;
-                <span class="event__offer-price">30</span>
+                <span class="event__offer-price">20</span>
               </label>
             </div>
 
@@ -147,12 +153,16 @@ const createPointEditTemplate = () => (
         </section>
       </section>
     </form>
-  </li>`
-);
+  </li>`);
+};
 
 export default class PointEditView {
+  constructor(point) {
+    this.point = point;
+  }
+
   getTemplate() {
-    return createPointEditTemplate();
+    return createPointEditTemplate(this.point);
   }
 
   getElement() {

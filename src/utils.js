@@ -7,6 +7,9 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const humanizeTaskDueDate = (dueDate) => dayjs(dueDate).format('D MMMM');
+const humanizeTaskDateTo = (dateTo) => dayjs(dateTo).format('D MMMM');
+const humanizeTaskDateFrom = (dateFrom) => dayjs(dateFrom).format('D MMMM');
 
-export {getRandomInteger, humanizeTaskDueDate};
+const isTaskExpired = (dueDate) => dueDate && dayjs().isAfter(dueDate, 'D');
+
+export {getRandomInteger, humanizeTaskDateTo, humanizeTaskDateFrom, isTaskExpired};

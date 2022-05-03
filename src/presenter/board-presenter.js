@@ -1,5 +1,5 @@
 import TripEventsListView from '../view/trip-events-list-view..js';
-import TripEventsItemView from '../view/point-view.js';
+import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-view';
 import {render} from '../render.js';
 
@@ -15,7 +15,7 @@ export default class BoardPresenter {
     render(new PointEditView(), this.boardComponent.getElement());
 
     for (let i = 0; i < this.boardPoints.length; i++) {
-      render(new TripEventsItemView(this.boardPoints[i]), this.boardComponent.getElement());
+      render(new PointView(this.boardPoints[i]), this.boardComponent.getElement());
     }
   };
 }

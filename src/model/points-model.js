@@ -1,7 +1,7 @@
-import {generateOfferConstruction} from '../mock/points.js';
+import {generatePoints} from '../mock/points.js';
 
 export default class PointsModel {
-  points = Array.from({length: 3}, generateOfferConstruction);
+  points = Array.from({length: 10}, generatePoints);
 
-  getPoinst = () => this.points;
+  getPoints = () => this.points;
 }

@@ -10,7 +10,7 @@ const createPointViewTemplate = () => (
       <h3 class="event__title">Taxi Amsterdam</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+          <time class="event__start-time" datetime="2019-03-18T10:30">10:00</time>
           &mdash;
           <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
         </p>
@@ -40,7 +40,7 @@ const createPointViewTemplate = () => (
   </li>`
 );
 
-export default class TripEventsItemView {
+export default class PointView {
   getTemplate() {
     return createPointViewTemplate();
   }
