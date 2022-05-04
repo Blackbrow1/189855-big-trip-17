@@ -1,12 +1,6 @@
 import {createElement} from '../render.js';
-import {humanizeTaskDateTo, humanizeTaskDateFrom, isTaskExpired} from '../utils.js';
 
-const createPointEditTemplate = (point) => {
-  const {basePrice, type, dateFrom, dateTo, destination, } = point;
-
-  const datePointFrom = dateFrom !== null ? humanizeTaskDateFrom(dateFrom) : '';
-  const datePointTo = dateTo !== null ? humanizeTaskDateTo(dateTo) : '';
-
+const createPointEditTemplate = () => {
   return (`<li class="trip-events__item">
     <form class="event event--edit" action="#" method="post">
       <header class="event__header">
@@ -157,12 +151,9 @@ const createPointEditTemplate = (point) => {
 };
 
 export default class PointEditView {
-  constructor(point) {
-    this.point = point;
-  }
 
   getTemplate() {
-    return createPointEditTemplate(this.point);
+    return createPointEditTemplate();
   }
 
   getElement() {
