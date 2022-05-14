@@ -12,7 +12,7 @@ export default class BoardPresenter {
     this.boardPoints = [...this.pointsModel.getPoints()];
 
     render(this.boardComponent, this.boardContainer);
-    render(new PointEditView(), this.boardComponent.getElement());
+    render(new PointEditView(this.boardPoints[0]), this.boardComponent.getElement());
 
     for (let i = 0; i < this.boardPoints.length; i++) {
       render(new PointView(this.boardPoints[i]), this.boardComponent.getElement());

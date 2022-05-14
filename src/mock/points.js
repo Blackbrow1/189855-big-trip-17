@@ -1,8 +1,15 @@
 import {getRandomInteger} from '../utils.js';
 
+const generateCiti = () => {
+  const cities = ['Amsterdam', 'London', 'Paris', 'New York', 'Osaka', 'Moscow', 'Saint-Petersburg', 'Madrid'];
+  const randomIndex = getRandomInteger(0, cities.length - 1);
+
+  return cities[randomIndex];
+};
+
 const generateDestination = () => ({
   description: 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
-  name: 'Chamonix',
+  name: generateCiti(),
   pictures: [
     {
       src: 'http://picsum.photos/300/200?r=0.0762563005163317',
@@ -26,11 +33,13 @@ export const generateOfferConstruction = () => ({
       id: 1,
       title: 'Upgrade to a business class',
       price: 120
-    }, {
+    },
+
+    {
       id: 2,
       title: 'Choose the radio station',
       price: 60
-    }
+    },
   ]
 });
 
@@ -42,35 +51,35 @@ const generatePointType = () => {
   return pointTypes[randomIndex];
 };
 
-export const generatePoints = () => ({
+export const generatePoint = () => ({
   basePrice: getRandomInteger(10, 50),
   dateFrom: '2019-07-10T22:55:56.845Z',
   dateTo: '2019-07-11T11:22:13.375Z',
   destination: generateDestination(),
   id: '0',
   isFavorite: false,
-  offers: Array.from(generateOfferConstruction),
+  offers: Array.from(generateOfferConstruction().offers),
   type: generatePointType()
 });
 
 
-const generateLocalPoint = () => ({
-  basePrice: 222,
-  dateFrom: '2019-07-10T22:55:56.845Z',
-  dateTo: '2019-07-11T11:22:13.375Z',
-  destination: generateDestination(),
-  isFavorite: false,
-  offers: Array.from(generateOfferConstruction),
-  type: 'taxi'
-});
+// const generateLocalPoint = () => ({
+//   basePrice: 222,
+//   dateFrom: '2019-07-10T22:55:56.845Z',
+//   dateTo: '2019-07-11T11:22:13.375Z',
+//   destination: generateDestination(),
+//   isFavorite: false,
+//   offers: Array.from(generateOfferConstruction),
+//   type: 'taxi'
+// });
 
 
-const generateAuthorizationError = () => ({
-  error: 401,
-  message: 'Header Authorization is not correct'
-});
+// const generateAuthorizationError = () => ({
+//   error: 401,
+//   message: 'Header Authorization is not correct'
+// });
 
-const generateNotFoundError = () => ({
-  error: 404,
-  message: 'Not found'
-});
+// const generateNotFoundError = () => ({
+//   error: 404,
+//   message: 'Not found'
+// });
