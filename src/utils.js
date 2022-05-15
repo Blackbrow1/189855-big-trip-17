@@ -20,7 +20,7 @@ const durationBetweenTwoDates = (dateTo, dateFrom) => {
   switch (true) {
     case minutes < 60:
       return dayjs.duration(millisec).format('MM');
-    case minutes < 60 * 12 * 24: {
+    case minutes < 60 * 24: {
       const [hours, durationMinutes] = dayjs.duration(millisec).format('HH:MM').split(':');
       return `${hours}H ${durationMinutes}M`;
     }
@@ -31,4 +31,10 @@ const durationBetweenTwoDates = (dateTo, dateFrom) => {
   }
 };
 
-export {getRandomInteger, humanizeDate, humanizeDateToHours, isTaskExpired, durationBetweenTwoDates};
+const getRandomArrayValue = (arr) => {
+  const randomIndex = getRandomInteger(0, arr.length - 1);
+
+  return arr[randomIndex];
+};
+
+export {getRandomInteger, humanizeDate, humanizeDateToHours, isTaskExpired, durationBetweenTwoDates, getRandomArrayValue};

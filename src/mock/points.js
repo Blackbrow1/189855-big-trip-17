@@ -1,11 +1,12 @@
-import {getRandomInteger} from '../utils.js';
+import {getRandomInteger, getRandomArrayValue} from '../utils.js';
 
-const generateCiti = () => {
-  const cities = ['Amsterdam', 'London', 'Paris', 'New York', 'Osaka', 'Moscow', 'Saint-Petersburg', 'Madrid'];
-  const randomIndex = getRandomInteger(0, cities.length - 1);
+const CITIES = ['Amsterdam', 'London', 'Paris', 'New York', 'Osaka', 'Moscow', 'Saint-Petersburg', 'Madrid'];
+const OFFER_TYPES = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+const TYPES = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+const MIN_PRICE = 10;
+const MAX_PRICE = 120;
 
-  return cities[randomIndex];
-};
+const generateCiti = () => getRandomArrayValue(CITIES);
 
 const generateDestination = () => ({
   description: 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
@@ -18,41 +19,59 @@ const generateDestination = () => ({
   ]
 });
 
-const generateOfferType = () => {
-  const offerTypes = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+const generateOfferType = () => getRandomArrayValue(OFFER_TYPES);
 
-  const randomIndex = getRandomInteger(0, offerTypes.length - 1);
-
-  return offerTypes[randomIndex];
-};
-
-export const generateOfferConstruction = () => ({
-  type: generateOfferType(),
-  offers: [
+const generateOffers = () => {
+  const totalOffers = [
     {
       id: 1,
       title: 'Upgrade to a business class',
-      price: 120
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
     },
 
     {
       id: 2,
       title: 'Choose the radio station',
-      price: 60
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
     },
-  ]
-});
 
-const generatePointType = () => {
-  const pointTypes = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+    {
+      id: 3,
+      title: 'Upgrade to a business class',
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
+    },
 
-  const randomIndex = getRandomInteger(0, pointTypes.length - 1);
+    {
+      id: 4,
+      title: 'Upgrade to a business class',
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
+    },
 
-  return pointTypes[randomIndex];
+    {
+      id: 5,
+      title: 'Upgrade to a business class',
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
+    },
+
+    {
+      id: 6,
+      title: 'Upgrade to a business class',
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE)
+    },
+  ];
+
+  return getRandomArrayValue(totalOffers);
 };
 
+export const generateOfferConstruction = () => ({
+  type: generateOfferType(),
+  offers: generateOffers()
+});
+
+const generatePointType = () => getRandomArrayValue(TYPES);
+
 export const generatePoint = () => ({
-  basePrice: getRandomInteger(10, 50),
+  basePrice: getRandomInteger(MIN_PRICE, MAX_PRICE),
   dateFrom: '2019-07-10T22:55:56.845Z',
   dateTo: '2019-07-11T11:22:13.375Z',
   destination: generateDestination(),

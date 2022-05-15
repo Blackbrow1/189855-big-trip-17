@@ -1,6 +1,6 @@
 import {createElement} from '../render.js';
 
-const createPointEditTemplate = (point) => {
+const createPointEditTemplate = (point, offers) => {
   const {basePrice = 0, dateFrom, dateTo, destination, offers, type} = point;
 
   const listItemOffers = offers.map((offer) => (`
