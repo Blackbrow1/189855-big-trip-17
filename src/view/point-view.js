@@ -1,8 +1,10 @@
 import {createElement} from '../render.js';
 import {humanizeDate, durationBetweenTwoDates, humanizeDateToHours} from '../utils.js';
+import { getPointOffers } from '../utils/points.js';
 
-const createPointViewTemplate = (point) => {
-  const {basePrice, dateFrom, dateTo, destination, offers, type} = point;
+const createPointViewTemplate = (point, allOffers) => {
+  const {basePrice, dateFrom, dateTo, destination, offers: idOffers, type} = point;
+  const offers = getPointOffers(allOffers, idOffers);
 
   const dateToInDays = dateTo !== null ? humanizeDate(dateTo) : '';
   const duration = durationBetweenTwoDates(dateTo, dateFrom);
@@ -53,12 +55,13 @@ const createPointViewTemplate = (point) => {
 };
 
 export default class PointView {
-  constructor(point) {
+  constructor(point, offers) {
     this.point = point;
+    this.offers = offers;
   }
 
   getTemplate() {
-    return createPointViewTemplate(this.point);
+    return createPointViewTemplate(this.point, this.offers);
   }
 
   getElement() {
