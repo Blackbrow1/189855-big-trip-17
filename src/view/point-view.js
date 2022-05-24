@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizeDate, durationBetweenTwoDates, humanizeDateToHours} from '../utils.js';
+import {humanizeDate, durationBetweenTwoDates, humanizeDateToHours} from '../utils/utils.js';
 import { getPointOffers } from '../utils/points.js';
 
 const createPointViewTemplate = (point, allOffers) => {

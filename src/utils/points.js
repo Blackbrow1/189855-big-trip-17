@@ -1,4 +1,4 @@
-import { getRandomArrayValue } from './utils.js';
+import { getRandomArrayValue } from './utils';
 
 export const getIdListFromOffers = (offers, count) => {
   if (offers.length < count) {
@@ -13,6 +13,4 @@ export const getIdListFromOffers = (offers, count) => {
   return Array.from(chosenIds);
 };
 
-export const getPointOffers = (offers, set) => {
-  return offer.filter((offer) => set.includes(offer.id));
-};
+export const getPointOffers = (offers, set) => offers.filter((offer) => set.includes(offer.id));
