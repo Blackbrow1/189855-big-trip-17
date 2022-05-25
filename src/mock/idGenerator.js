@@ -3,7 +3,7 @@ export class IdGenerator {
     this.index = startIndex;
   }
 
-  netNext() {
+  getNext() {
     return this.index++;
   }
 }
