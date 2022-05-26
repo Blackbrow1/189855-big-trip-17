@@ -20,21 +20,21 @@ export default class BoardPresenter {
     // }
 
     for (let i = 0; i < this.boardPoints.length; i++) {
-      this.#renderPoint(this.boardPoints[i]);
+      this.#renderPoint(this.boardPoints[i], this.pointsOffers);
     }
   };
 
-  #renderPoint = (point) => {
-    const pointComponent = new PointView(point);
+  #renderPoint = (point, offers) => {
+    const pointComponent = new PointView(point, offers);
 
-    const pointEditComponent = new PointEditView(point);
+    const pointEditComponent = new PointEditView(point, offers);
 
     const replaceCardToForm = () => {
-      this.boardComponent.element.replaceChild(pointEditComponent.element, pointComponent.element);
+      this.boardComponent.getElement().replaceChild(pointEditComponent.getElement(), pointComponent.getElement());
     };
 
     const replaceFormToCard = () => {
-      this.boardComponent.element.replaceChild(pointComponent.element, pointEditComponent.element);
+      this.boardComponent.getElement().replaceChild(pointComponent.getElement(), pointEditComponent.getElement());
     };
 
     const onEscKeyDown = (evt) => {
@@ -45,12 +45,12 @@ export default class BoardPresenter {
       }
     };
 
-    pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    pointComponent.getElement().querySelector('.event__rollup-btn').addEventListener('click', () => {
       replaceCardToForm();
       document.addEventListener('keydown', onEscKeyDown);
     });
 
-    pointEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+    pointEditComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
       evt.preventDefault();
       replaceFormToCard();
       document.removeEventListener('keydown', onEscKeyDown);
