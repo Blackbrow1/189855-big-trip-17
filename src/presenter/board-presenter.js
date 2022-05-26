@@ -18,6 +18,10 @@ export default class BoardPresenter {
     // for (let i = 0; i < this.boardPoints.length; i++) {
     //   render(new PointView(this.boardPoints[i], this.pointsOffers), this.boardComponent.getElement());
     // }
+
+    for (let i = 0; i < this.boardPoints.length; i++) {
+      this.#renderPoint(this.boardPoints[i]);
+    }
   };
 
   #renderPoint = (point) => {
