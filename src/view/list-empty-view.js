@@ -21,6 +21,10 @@ export default class NoListView {
     return createListEmptyTemplate();
   }
 
+  getElement() {
+    return this.element;
+  }
+
   removeElement() {
     this.#element = null;
   }
