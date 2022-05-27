@@ -2,6 +2,7 @@ import TripEventsListView from '../view/trip-events-list-view..js';
 import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-view';
 import {render} from '../render.js';
+import NoListView from '../view/list-empty-view.js';
 
 export default class BoardPresenter {
   boardComponent = new TripEventsListView();
@@ -12,12 +13,21 @@ export default class BoardPresenter {
     this.pointsOffers = pointsModel.getOffers();
     this.boardPoints = [...this.pointsModel.getPoints()];
 
-    render(this.boardComponent, this.boardContainer);
+    //render(this.boardComponent, this.boardContainer);
     // render(new PointEditView(this.boardPoints[0], this.pointsOffers), this.boardComponent.getElement());
 
     // for (let i = 0; i < this.boardPoints.length; i++) {
     //   render(new PointView(this.boardPoints[i], this.pointsOffers), this.boardComponent.getElement());
     // }
+
+    // for (let i = 0; i < this.boardPoints.length; i++) {
+    //   this.#renderPoint(this.boardPoints[i], this.pointsOffers);
+    // }
+
+    if (this.boardPoints.every((point) => point.isArchive)) {
+      render(new NoListView(), this.boardComponent.getElement());
+    } else {
+      render(this.boardComponent, this.boardContainer);
 
     for (let i = 0; i < this.boardPoints.length; i++) {
       this.#renderPoint(this.boardPoints[i], this.pointsOffers);
