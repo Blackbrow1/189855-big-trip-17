@@ -1,7 +1,7 @@
+import {render} from './framework/render.js';
 import TripEventsListView from '../view/trip-events-list-view..js';
 import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-view';
-import {render} from '../render.js';
 import NoListView from '../view/list-empty-view.js';
 import SortView from '../view/sort-view.js';
 

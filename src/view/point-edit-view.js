@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 const createPointEditTemplate = (point, allOffers) => {
   const {basePrice = 0, dateFrom, dateTo, destination, offers: idOffers, type: pointType} = point;
@@ -99,7 +99,6 @@ export default class PointEditView {
   constructor(point, offers) {
     this.point = point;
     this.offers = offers;
-
   }
 
   getTemplate() {
