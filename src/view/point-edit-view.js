@@ -95,25 +95,14 @@ const createPointEditTemplate = (point, allOffers) => {
   </li>`);
 };
 
-export default class PointEditView {
+export default class PointEditView extends AbstractView {
   constructor(point, offers) {
+    super();
     this.point = point;
     this.offers = offers;
   }
 
-  getTemplate() {
+  get template() {
     return createPointEditTemplate(this.point, this.offers);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }
