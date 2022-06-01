@@ -1,5 +1,5 @@
-import {render} from './framework/render.js';
-import TripEventsListView from '../view/trip-events-list-view..js';
+import {render, replace} from '../framework/render.js';
+import TripEventsListView from '../view/trip-events-list-view.js';
 import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-view';
 import NoListView from '../view/list-empty-view.js';
@@ -43,11 +43,11 @@ export default class BoardPresenter {
     const pointEditComponent = new PointEditView(point, offers);
 
     const replaceCardToForm = () => {
-      this.boardComponent.getElement().replaceChild(pointEditComponent.getElement(), pointComponent.getElement());
+      replace(pointEditComponent, pointComponent);
     };
 
     const replaceFormToCard = () => {
-      this.boardComponent.getElement().replaceChild(pointComponent.getElement(), pointEditComponent.getElement());
+      replace(pointComponent, pointEditComponent);
     };
 
     const onEscKeyDown = (evt) => {
@@ -58,17 +58,16 @@ export default class BoardPresenter {
       }
     };
 
-    pointComponent.getElement().querySelector('.event__rollup-btn').addEventListener('click', () => {
+    pointComponent.setEditClickHandler(() => {
       replaceCardToForm();
       document.addEventListener('keydown', onEscKeyDown);
     });
 
-    pointEditComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
-      evt.preventDefault();
+    pointEditComponent.setFormSubmitHandler(() => {
       replaceFormToCard();
       document.removeEventListener('keydown', onEscKeyDown);
     });
 
-    render(pointComponent, this.boardComponent.getElement());
+    render(pointComponent, this.boardComponent.element);
   };
 }
