@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 const createPointEditTemplate = (point, allOffers) => {
   const {basePrice = 0, dateFrom, dateTo, destination, offers: idOffers, type: pointType} = point;
@@ -95,26 +95,26 @@ const createPointEditTemplate = (point, allOffers) => {
   </li>`);
 };
 
-export default class PointEditView {
+export default class PointEditView extends AbstractView {
   constructor(point, offers) {
+    super();
     this.point = point;
     this.offers = offers;
-
   }
 
-  getTemplate() {
+  get template() {
     return createPointEditTemplate(this.point, this.offers);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  setFormSubmitHandler = (callback) => {
+    this._callback.formSubmit = callback;
 
-    return this.element;
-  }
+    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
+  };
 
-  removeElement() {
-    this.element = null;
-  }
+  #formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    this._callback.formSubmit();
+  };
 }
