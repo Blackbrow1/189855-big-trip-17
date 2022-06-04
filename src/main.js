@@ -13,3 +13,4 @@ render(new FilterView(), tripMainElement);
 
 boardPresenter.init(tripEvents, pointsModel);
 
+// Вроде как выполнен module4-task2
